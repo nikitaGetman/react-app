@@ -1,0 +1,15 @@
+.container {
+  width: 100%;
+  padding: 8px;
+}
+.item {
+  display: flex;
+  align-items: center;
+}
+.checkbox {
+  flex: 0 0 16px;
+  margin-right: 16px;
+}
+.sublist {
+  margin-left: 32px;
+}

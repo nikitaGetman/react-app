@@ -1,29 +1,36 @@
 import React, { useState } from 'react';
 
-import CreateTodoForm from '../components/CreateTodoForm';
-import TodoList from '../components/TodoList';
-
-const defaultTodos = [
-  { id: 1, title: 'Погулять с собакой', isDone: false },
-  { id: 2, title: 'Вынести мусор', isDone: false },
-  { id: 3, title: 'Прочитать книгу', isDone: true },
-];
+import RoutineList from '../components/RoutineList';
+import TaskList from '../components/TaskList';
 
 const Dashboard = () => {
-  const [todos, setTodos] = useState([...defaultTodos]);
-
-  const addTodo = (todo) => {
-    const newTodo = { ...todo, id: Date.now(), isDone: false };
-    setTodos([...todos, newTodo]);
-  };
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      text: 'Задача 1',
+      isDone: false,
+      children: [
+        { id: 11, text: 'Подзадача 1', isDone: false },
+        {
+          id: 12,
+          text: 'Подзадача 2',
+          isDone: false,
+          children: [
+            { id: 121, text: 'Подзадача 1', isDone: false },
+            { id: 122, text: 'Подзадача 1', isDone: false },
+          ],
+        },
+        { id: 13, text: 'Подзадача 3', isDone: false },
+      ],
+    },
+    { id: 2, text: 'Задача 2', isDone: false },
+  ]);
 
   return (
-    <div className="dashboard">
-      <h1 className="dashboard__title">Туду-лист</h1>
+    <div>
+      <TaskList tasks={tasks} onChange={setTasks} />
 
-      <CreateTodoForm onCreate={addTodo} />
-
-      <TodoList todos={todos} setTodos={setTodos} />
+      <RoutineList />
     </div>
   );
 };
